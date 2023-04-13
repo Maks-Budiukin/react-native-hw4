@@ -1,7 +1,10 @@
 import {
   Text,
+  View,
 } from 'react-native';
 
+import { mainTabs } from '../router';
+
 export const Home = () => {
-    return(<Text>Home screen</Text>)
+    return(mainTabs())
 }

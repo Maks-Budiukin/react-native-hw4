@@ -12,18 +12,12 @@ import { ProfileScreen } from './Screens/ProfileScreen.js';
 
 const AuthStack = createNativeStackNavigator();
 const MainTab = createBottomTabNavigator();
+const HomeStack = createNativeStackNavigator();
 
 import { Feather } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-export const useRouting = (isAuth) => {
-  if (!isAuth) {
-    return (<AuthStack.Navigator initialRouteName="Registration">
-        <AuthStack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} /> 
-        <AuthStack.Screen options={{headerShown: false}} name="Registration" component={RegistrationScreen}/>
-      </AuthStack.Navigator>)
-  }
-    return (<MainTab.Navigator screenOptions={{
+export const mainTabs = () => {
+  return (<MainTab.Navigator screenOptions={{
         activeTintColor: '#FFFFFF',
       tabBarShowLabel: false,
         tabBarActiveBackgroundColor: "#FF6C00",
@@ -63,5 +57,17 @@ export const useRouting = (isAuth) => {
           ),
         }}/>
       </MainTab.Navigator>)
+}
+
+export const useRouting = (isAuth) => {
+  if (!isAuth) {
+    return (<AuthStack.Navigator initialRouteName="Registration">
+        <AuthStack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} /> 
+        <AuthStack.Screen options={{headerShown: false}} name="Registration" component={RegistrationScreen}/>
+      </AuthStack.Navigator>)
+  }
+    return (<HomeStack.Navigator>
+        <HomeStack.Screen options={{ headerShown: false }} name="Home" component={Home} />
+      </HomeStack.Navigator>)
 
 }
